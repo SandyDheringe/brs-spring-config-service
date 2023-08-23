@@ -1,3 +1,4 @@
+
 spring:
   application:
     name: config-server
@@ -5,6 +6,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/SandyDheringe/brs-spring-config-service.git
+          uri: https://github.com/SandyDheringe/brs-config-service-properties.git
+        default-label: master
 server:
   port: 8071
