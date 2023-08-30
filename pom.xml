@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.brsspringconfig</groupId>
     <artifactId>brs-spring-config-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>brs-spring-config-service</name>
     <description>brs-spring-config-service</description>
     <properties>
