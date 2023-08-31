@@ -1,0 +1,651 @@
+{
+	"info": {
+		"_postman_id": "2c3591d5-8cb0-40d9-91d8-9abec778a158",
+		"name": "BRS System collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28707992"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "/admin/api/v1/buses/5",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8072/admin/api/v1/buses/13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"admin",
+								"api",
+								"v1",
+								"buses",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/admin/api/v1/buses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8072/admin/api/v1/buses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"admin",
+								"api",
+								"v1",
+								"buses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/brs-admin-service/api/v1/buses",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"busNumber\":\"MH15EX5555\",\r\n    \"busType\":\"AC_SEATER\",\r\n    \"totalSeats\":50,\r\n    \"source\":\"nagpur\",\r\n    \"destination\":\"mumbai\",\r\n    \"duration\":500,\r\n    \"fareAmount\":2500\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8072/admin/api/v1/buses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"admin",
+								"api",
+								"v1",
+								"buses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/brs-admin-service/api/v1/buses",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 14,\r\n    \"busNumber\": \"MH15EX5555\",\r\n    \"busType\": \"AC_SEATER\",\r\n    \"totalSeats\": 60,\r\n    \"source\": \"nagpur\",\r\n    \"destination\": \"mumbai\",\r\n    \"duration\": 500,\r\n    \"fareAmount\": 2500.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8072/admin/api/v1/buses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"admin",
+								"api",
+								"v1",
+								"buses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/admin/api/v1/buses/4",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8072/admin/api/v1/buses/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"admin",
+								"api",
+								"v1",
+								"buses",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inventory",
+			"item": [
+				{
+					"name": "/brs-inventory-service/api/v1/buses/inventories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8072/inventory/api/v1/buses/inventories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"inventory",
+								"api",
+								"v1",
+								"buses",
+								"inventories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/brs-inventory-service/api/v1/buses/inventories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"busId\":1,\r\n    \"availableSeats\":40\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8072/brs-inventory-service/api/v1/buses/inventories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"brs-inventory-service",
+								"api",
+								"v1",
+								"buses",
+								"inventories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/brs-inventory-service/api/v1/buses/inventories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"busId\": 1,\r\n    \"availableSeats\": 30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8072/brs-inventory-service/api/v1/buses/inventories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"brs-inventory-service",
+								"api",
+								"v1",
+								"buses",
+								"inventories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/brs-inventory-service/api/v1/buses/1/inventories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8072/inventory/api/v1/buses/5/inventories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"inventory",
+								"api",
+								"v1",
+								"buses",
+								"5",
+								"inventories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "/auth/api/v1/customers/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\":\"sandeep_d\",\r\n    \"password\":\"sandeep@123\",\r\n    \"phone\":\"+919911234567\",\r\n    \"email\":\"sandeepd@gmail.com\",\r\n    \"name\":\"Sandeep Dheringe\",\r\n    \"gender\":\"MALE\",\r\n    \"age\":33\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8072/auth/api/v1/customers/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"auth",
+								"api",
+								"v1",
+								"customers",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/brs-auth-service/auth/validate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW5kZWVwIiwiaWF0IjoxNjkzMDY2MDI2LCJleHAiOjE2OTMwNjc4MjZ9.lvJqo87zpmy8s-n9cIFWUbNpPAg9MW1MCTwT6eupSVo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8072/brs-auth-service/auth/validate?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW5kZWVwIiwiaWF0IjoxNjkzMDY2MDI2LCJleHAiOjE2OTMwNjc4MjZ9.lvJqo87zpmy8s-n9cIFWUbNpPAg9MW1MCTwT6eupSVo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"brs-auth-service",
+								"auth",
+								"validate"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYW5kZWVwIiwiaWF0IjoxNjkzMDY2MDI2LCJleHAiOjE2OTMwNjc4MjZ9.lvJqo87zpmy8s-n9cIFWUbNpPAg9MW1MCTwT6eupSVo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/auth/api/v1/customers/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\":\"sandeep1\",\r\n    \"password\":\"sandy1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8072/auth/api/v1/customers/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"auth",
+								"api",
+								"v1",
+								"customers",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "booking",
+			"item": [
+				{
+					"name": "/booking/api/v1/bookings/1",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8072/booking/api/v1/bookings/customers/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"booking",
+								"api",
+								"v1",
+								"bookings",
+								"customers",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/booking/api/v1/bookings/19",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8072/booking/api/v1/bookings/20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"booking",
+								"api",
+								"v1",
+								"bookings",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/booking/api/v1/bus/search?source=nashik&destination=pune",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8072/booking/api/v1/bus/search?source=nagpur&destination=mumbai",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"booking",
+								"api",
+								"v1",
+								"bus",
+								"search"
+							],
+							"query": [
+								{
+									"key": "source",
+									"value": "nagpur"
+								},
+								{
+									"key": "destination",
+									"value": "mumbai"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/booking/api/v1/bookings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"busId\": 14,\r\n    \"customerId\": 3,\r\n    \"passengerDetails\": [\r\n        {\r\n            \"name\": \"Dhanu D\",\r\n            \"gender\": \"FEMALE\",\r\n            \"age\": 10,\r\n            \"city\": \"nashik\",\r\n            \"state\": \"MH\"\r\n        }\r\n    ],\r\n    \"bookingDate\": \"2023-09-01T08:21:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8072/booking/api/v1/bookings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"booking",
+								"api",
+								"v1",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/booking/api/v1/bookings/15",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"busId\": 5,\r\n    \"customerId\": 3,\r\n    \"passengerDetails\": [\r\n        {\r\n            \"name\": \"Vijaya D\",\r\n            \"gender\": \"FEMALE\",\r\n            \"age\": 28,\r\n            \"city\": \"nashik\",\r\n            \"state\": \"MH\"\r\n        }\r\n    ],\r\n    \"bookingDate\": \"2023-08-28T08:21:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8072/booking/api/v1/bookings/19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"booking",
+								"api",
+								"v1",
+								"bookings",
+								"19"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "payment",
+			"item": [
+				{
+					"name": "/payment/api/v1/payments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookingId\": 21,\r\n    \"busId\": 14,\r\n    \"paymentAmount\": 2500,\r\n    \"paymentMethod\": \"UPI\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8072/payment/api/v1/payments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"payment",
+								"api",
+								"v1",
+								"payments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
