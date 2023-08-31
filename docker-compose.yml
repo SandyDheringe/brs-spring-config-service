@@ -1,0 +1,189 @@
+
+services:
+
+#  mysql:
+#    image: mysql:latest
+#    container_name: mysql
+#    environment:
+#      MYSQL_DATABASE: 'mysql'
+##      MYSQL_USER: 'root'
+##      MYSQL_PASSWORD: 'root'
+#      MYSQL_ROOT_PASSWORD: 'root'
+#    ports:
+#      - "3306:3307"
+#    volumes:
+#      - ./data/conf.d:/etc/mysql/conf.d
+#      - ./data/logs:/logs
+#      - /usr/local/var/mysql:/var/lib/mysql
+
+#  db:
+#    image: mysql:latest
+##    command: --default-authentication-plugin=caching_sha2_password
+#    restart: always
+#    environment:
+#      MYSQL_DATABASE: 'bus_reservation_db'
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_TCP_PORT: 3037
+#    ports:
+#      - 3037:3037
+#    expose:
+#      - 3307
+#    extra_hosts:
+#      - "host.docker.internal:mysqlhost"
+#    volumes:
+#      - ./data/conf.d:/etc/mysql/conf.d
+#      - ./data/logs:/logs
+#      - /usr/local/var/mysql:/var/lib/mysql
+
+#    volumes:
+#      - ./db-dump:/docker-entrypoint-initdb.d
+
+  zipkin-server:
+    image: 'openzipkin/zipkin'
+    ports:
+      - '9411:9411'
+
+  activemq:
+    image: rmohr/activemq:5.10.0
+    container_name: activemq
+    environment:
+      - "TZ=Europe/Amsterdam"
+    volumes:
+      - "./activemq/activemq.xml:/conf/activemq.xml"
+    ports:
+      - "61616:61616" # broker (admin:adminactivemq)(amq:amq)
+      - "8161:8161"   # web    http://boot2docker:8161/admin (admin:admin)
+
+  config-server:
+    image: sandeepdheringe/brsconfigservice:31augprod
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8071/actuator/health" ]
+      interval: 10s
+      timeout: 12s
+      retries: 3
+      start_period: 3s
+
+  brs-eureka-server:
+    image: sandeepdheringe/brseurekaserver:31augprod
+    ports:
+      - "8070:8070"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8070/actuator/health" ]
+      interval: 10s
+      timeout: 12s
+      retries: 3
+      start_period: 4s
+    depends_on:
+      config-server:
+        condition: service_healthy
+
+  gateway-server:
+    image: sandeepdheringe/brsgatewayserver:31augprod
+    ports:
+      - "8072:8072"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8072/actuator/health" ]
+      interval: 10s
+      timeout: 12s
+      retries: 3
+      start_period: 4s
+    depends_on:
+      config-server:
+        condition: service_healthy
+      brs-eureka-server:
+        condition: service_healthy
+
+  auth-service:
+    image: sandeepdheringe/brsauthservice:31augprod
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8085/actuator/health" ]
+      interval: 10s
+      timeout: 12s
+      retries: 3
+      start_period: 4s
+    deploy:
+      mode: replicated
+      replicas: 1
+    depends_on:
+      config-server:
+        condition: service_healthy
+      brs-eureka-server:
+        condition: service_healthy
+      gateway-server:
+        condition: service_started
+
+  admin-service:
+    image: sandeepdheringe/brsadminservice:31augprod
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8081/actuator/health" ]
+      interval: 10s
+      timeout: 12s
+      retries: 3
+      start_period: 4s
+    deploy:
+      mode: replicated
+      replicas: 1
+    depends_on:
+      config-server:
+        condition: service_healthy
+      brs-eureka-server:
+        condition: service_healthy
+      gateway-server:
+        condition: service_started
+
+  booking-service:
+    image: sandeepdheringe/brsbookingservice:31augprod
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8083/actuator/health" ]
+      interval: 10s
+      timeout: 12s
+      retries: 3
+      start_period: 4s
+    deploy:
+      mode: replicated
+      replicas: 1
+    depends_on:
+      config-server:
+        condition: service_healthy
+      brs-eureka-server:
+        condition: service_healthy
+      gateway-server:
+        condition: service_started
+      activemq:
+        condition: service_started
+
+  inventory-service:
+    image: sandeepdheringe/brsinventoryservice:31augprod
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8082/actuator/health" ]
+      interval: 10s
+      timeout: 12s
+      retries: 3
+      start_period: 4s
+    depends_on:
+      config-server:
+        condition: service_healthy
+      brs-eureka-server:
+        condition: service_healthy
+      gateway-server:
+        condition: service_started
+      activemq:
+        condition: service_started
+
+  payment-service:
+    image: sandeepdheringe/brspaymentservice:31augprod
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8084/actuator/health" ]
+      interval: 10s
+      timeout: 12s
+      retries: 3
+      start_period: 4s
+    depends_on:
+      config-server:
+        condition: service_healthy
+      brs-eureka-server:
+        condition: service_healthy
+      gateway-server:
+        condition: service_started
+      activemq:
+        condition: service_started
